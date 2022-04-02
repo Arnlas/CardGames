@@ -5,12 +5,14 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
+          <e p="BasicDeck.cs" t="Include" />
           <e p="Card.cs" t="Include" />
           <e p="Deck.cs" t="Include" />
           <e p="Game.cs" t="Include" />
           <e p="Games" t="Include">
             <e p="BasicGame.cs" t="Include" />
           </e>
+          <e p="Parameters.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="Table.cs" t="Include" />
         </e>

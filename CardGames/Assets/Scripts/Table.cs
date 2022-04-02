@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Table : MonoBehaviour
 {
-    [SerializeField] private GameType gameType;
-    
     [HideInInspector] public Table Instance;
     
-    private Game game;
+    [SerializeField] private int deckSize = 52;
+    [SerializeField] private Game game;
+    [SerializeField] private Deck deck;
+    [SerializeField] private List<Player> players = new List<Player>();
 
     private bool _isInitialised = false;
 
@@ -27,12 +28,11 @@ public class Table : MonoBehaviour
     {
         if (Instance != null && Instance != this) return;
 
-        switch (gameType)
-        {
-            case GameType.Basic:
-                game = new BasicGame();
-                break;
-        }
+        game.Initialize();
+        var parameters = game.GetParameters();
+        deck.Initialize(deckSize);
+        deck.CreateDeck(parameters);
+        deck.Shuffle();
         
         _isInitialised = true;
     }

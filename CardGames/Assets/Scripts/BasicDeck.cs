@@ -16,8 +16,8 @@ public class BasicDeck : Deck
         cards = new List<Card>();
         var param1 = parameters[0] as Parameters.CardParameter<int>;
         var param2 = parameters[1] as Parameters.CardParameter<int>;
-        for (int i = 0; i < param1.Max - param1.Min + 1; i++)
-        for (int j = 0; j < param2.Max - param2.Min + 1; j++)
+        for (int i = param1.Min; i <= param1.Max; i++)
+        for (int j = param2.Min; j <= param2.Max; j++)
         {
             cards.Add(CreateCard(param1.Key, i, param2.Key, j));
         }

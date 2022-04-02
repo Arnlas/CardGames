@@ -27,6 +27,11 @@ public class Card : IDisposable
 
         return true;
     }
+    
+    public T GetParameter<T>(string key)
+    {
+        return (T)data[key];
+    }
 
     public void AddParameter<T>(string key, T value)
     {

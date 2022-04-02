@@ -33,7 +33,7 @@ public class Table : MonoBehaviour
         deck.Initialize(deckSize);
         deck.CreateDeck(parameters);
         deck.Shuffle();
-        
+        game.GameStart(players, deck);
         _isInitialised = true;
     }
 }

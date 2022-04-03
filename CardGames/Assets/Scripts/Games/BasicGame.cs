@@ -51,15 +51,8 @@ public class BasicGame : Game
                 return;
             }
 
-            StartCoroutine(Wait());
+            RoundStart();
         });
-    }
-
-    private IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1);
-        RoundStart();
-
     }
 
     public override void RoundEnd()

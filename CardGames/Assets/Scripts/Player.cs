@@ -6,20 +6,15 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
+    public UnityEvent<Card> NewCard = new UnityEvent<Card>();
     public UnityEvent PlayerTurnStart = new UnityEvent();
+    public UnityEvent PlayerTurnEnd = new UnityEvent();
     
-    public int Score { get; private set; }
-
     
     private List<Card> _cards = new List<Card>();
     private Action<Card> _resultAction;
     private int _maxHandSize;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && _resultAction != null) TurnEnd(_cards[0]); 
-    }
-    
     public void TakeInitialHand(int count, Deck deck)
     {
         _maxHandSize = count;
@@ -37,24 +32,22 @@ public class Player : MonoBehaviour
     {
         if (!deck.GetCardTop(out Card card)) return false;
         _cards.Add(card);
+        NewCard.Invoke(card);
         return true;
     }
 
     public void TurnStart(Action<Card> action)
     {
         _resultAction = action;
-        
+        PlayerTurnStart.Invoke();
     }
 
     public void TurnEnd(Card card)
     {
+        card.CardRemoved.Invoke();
         _cards.Remove(card);
         _resultAction.Invoke(card);
         _resultAction = null;
-    }
-
-    public void AddScore(int score)
-    {
-        Score += score;
+        PlayerTurnEnd.Invoke();
     }
 }

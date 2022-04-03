@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Card : IDisposable
 {
     #region Private fields
 
+    public UnityEvent CardRemoved = new UnityEvent();
     private Texture backTexture;
     protected Dictionary<string, object> data = new Dictionary<string, object>();
 

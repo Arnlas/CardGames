@@ -33,6 +33,7 @@ public class Parameters
     {
         
     }
+    [System.Serializable]
     public class CardParameter<T> : CardParameter where T : struct
     {
         public string Key;

@@ -15,6 +15,10 @@
           <e p="Parameters.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="Table.cs" t="Include" />
+          <e p="UI" t="Include">
+            <e p="CardUI.cs" t="Include" />
+            <e p="PlayerUIController.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">

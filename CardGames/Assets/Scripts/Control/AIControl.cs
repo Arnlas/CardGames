@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIControl : IControl
+public class AIControl : Control
 {
     public override void Initialize(PlayerUIController controller)
     {

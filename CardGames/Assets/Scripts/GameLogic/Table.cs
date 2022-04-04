@@ -11,8 +11,6 @@ public class Table : MonoBehaviour
     [SerializeField] private Deck deck;
     [SerializeField] private List<Player> players = new List<Player>();
 
-    private bool _isInitialised = false;
-
     void Awake()
     {
         if (Instance != null)
@@ -34,6 +32,5 @@ public class Table : MonoBehaviour
         deck.CreateDeck(parameters);
         deck.Shuffle();
         game.GameStart(players, deck);
-        _isInitialised = true;
     }
 }

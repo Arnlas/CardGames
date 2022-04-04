@@ -7,16 +7,17 @@ using UnityEngine;
 public class PlayerUIController : MonoBehaviour
 {
     [SerializeField] private bool _topPlayer = false;
-    [SerializeField] private IControl control;
+    [SerializeField] private Control control;
     [SerializeField] private Transform cardTablePosition;
     [SerializeField] private Transform originTransform;
     [SerializeField] private Transform handTransform;
     [SerializeField] private Transform handRadiusTransform;
     public Player player;
-    [SerializeField] private GameObject cardPrefab;
 
     public List<CardUI> Cards { get; private set; }
-    public float Radius { get; private set; }
+    private float Radius { get; set; }
+
+    private CardUI _card2Destroy;
 
     private void Awake()
     {
@@ -40,8 +41,8 @@ public class PlayerUIController : MonoBehaviour
 
     private void NewCard(Card card)
     {
-        var newCard = Instantiate(cardPrefab, originTransform.position, Quaternion.Euler(0, -180, 0), this.transform);
-        newCard.transform.localScale = originTransform.localScale;
+        var newCard = Pool.Instance.GetObject(originTransform.position, Quaternion.Euler(0, -180, 0),
+            originTransform.localScale, this.transform);
         CardUI ui = newCard.GetComponent<CardUI>();
 
         control.AttachControl(ui);
@@ -68,10 +69,12 @@ public class PlayerUIController : MonoBehaviour
     public void OnPointClick(CardUI card)
     {
         foreach (CardUI c in Cards) c.Clickable = false;
-        card.transform.parent = this.transform.parent;
+        Pool.Instance.ReturnObject(card.gameObject);
         card.transform.Pos2PosScale(cardTablePosition.position, Vector3.zero, originTransform.localScale, 1.0f, ()=>
         {
             player.TurnEnd(card.Card);
+            if (_card2Destroy != null) Pool.Instance.Disable(_card2Destroy.gameObject);
+            _card2Destroy = card;
         });
     }
 }

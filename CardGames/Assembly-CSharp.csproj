@@ -52,22 +52,23 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Deck.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\Deck.cs" />
      <Compile Include="Assets\Scripts\Tweens\CustomTweens.cs" />
-     <Compile Include="Assets\Scripts\BasicDeck.cs" />
-     <Compile Include="Assets\Scripts\Game.cs" />
-     <Compile Include="Assets\Scripts\Table.cs" />
-     <Compile Include="Assets\Scripts\Card.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\Games\BasicGame.cs" />
+     <Compile Include="Assets\Scripts\Inheritors\Decks\BasicDeck.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\Game.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\Table.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\Card.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\Player.cs" />
+     <Compile Include="Assets\Scripts\Inheritors\Games\BasicGame.cs" />
      <Compile Include="Assets\Scripts\UI\PlayerUIController.cs" />
      <Compile Include="Assets\Scripts\UI\CardUI.cs" />
-     <Compile Include="Assets\Scripts\Parameters.cs" />
+     <Compile Include="Assets\Scripts\Extras\ExtansionsAndParameters.cs" />
      <Compile Include="Assets\Scripts\Tweens\CardTweener.cs" />
-     <Compile Include="Assets\Scripts\Control\IControl.cs" />
+     <Compile Include="Assets\Scripts\Control\Control.cs" />
      <Compile Include="Assets\Scripts\Control\HumanControl.cs" />
      <Compile Include="Assets\Scripts\Control\AIControl.cs" />
      <Compile Include="Assets\Scripts\UI\ScoreUI.cs" />
+     <Compile Include="Assets\Scripts\Extras\Pool.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

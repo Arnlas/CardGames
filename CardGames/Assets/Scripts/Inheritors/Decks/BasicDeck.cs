@@ -22,7 +22,6 @@ public class BasicDeck : Deck
             cards.Add(CreateCard(param1.Key, i, param2.Key, j));
         }
         
-        Debug.LogError($"Cards size = {cards.Count}");
     }
     private Card CreateCard(string key1, int val1, string key2, int val2)
     {

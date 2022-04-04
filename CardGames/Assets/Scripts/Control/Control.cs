@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class IControl : MonoBehaviour
+public abstract class Control : MonoBehaviour
 {
     protected PlayerUIController _uiController;
     public abstract void Initialize(PlayerUIController controller);

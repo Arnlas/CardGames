@@ -64,7 +64,12 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         _player.PlayerTurnStart.RemoveListener(Activate);
         _player.PlayerTurnEnd.RemoveListener(Deactivate);
+        _card.CardRemoved.RemoveListener(DetachCard);
+        OnPointEnter = new UnityEvent<CardUI>();
+        OnPointExit = new UnityEvent<CardUI>();
+        OnPointClick = new UnityEvent<CardUI>();
         _player = null;
+        Clickable = false;
     }
 
     private void Activate()

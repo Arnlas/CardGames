@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class BasicGame : Game
 {
+    [HideInInspector] public UnityEvent<List<Player>, Dictionary<int, int[]>> ScoreUpdated = new UnityEvent<List<Player>, Dictionary<int, int[]>>();
     [SerializeField] private string param1Name, param2Name;
     [SerializeField] private int min1, max1, min2, max2;
     private List<Parameters.CardParameter> _parameters;
@@ -14,6 +16,13 @@ public class BasicGame : Game
     private Dictionary<int, int[]> scoreBoard = new Dictionary<int, int[]>();
     private Deck _deck;
     private int _currentPlayer = 0;
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            foreach (Player p in _players)
+                p.TakeCard(_deck);
+    }
     
     public override void Initialize()
     {
@@ -27,20 +36,21 @@ public class BasicGame : Game
         _deck = deck;
         _players = players;
         scoreBoard = new Dictionary<int, int[]>();
-        
+
         int handSize = Random.Range(handSizeMin, handSizeMax);
         for (int i = 0; i < players.Count; i++)
         {
             players[i].TakeInitialHand(handSize, deck);
             scoreBoard.Add(i, new int[max1 - min1 + 1]);
         }
+        
+        ScoreUpdated.Invoke(_players, scoreBoard);
 
         RoundStart();
     }
 
     public override void RoundStart()
     {
-        Debug.LogError($"Round Started for player {_currentPlayer}");
         _players[_currentPlayer].TurnStart(card =>
         {
             currentTable.Add(_currentPlayer, card);
@@ -62,11 +72,7 @@ public class BasicGame : Game
 
         scoreBoard[sortedDict.First().Key][sortedDict.First().Value.GetParameter<int>(param1Name)] += 1;
 
-        for (int i = 0; i < _players.Count; i++)
-        {
-            Debug.LogError(Mathf.Pow(scoreBoard[i][0],2) + Mathf.Pow(scoreBoard[i][1],2) +
-                           Mathf.Pow(scoreBoard[i][2],2) + Mathf.Pow(scoreBoard[i][3],2));
-        }
+        ScoreUpdated.Invoke(_players, scoreBoard);
         
         foreach (var pair in currentTable) _deck.AddBottomCard(pair.Value);
         _deck.Shuffle();

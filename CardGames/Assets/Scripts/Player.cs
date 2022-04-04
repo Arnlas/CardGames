@@ -6,7 +6,9 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
+    public List<Card> Cards => _cards;
     public UnityEvent<Card> NewCard = new UnityEvent<Card>();
+    public UnityEvent<bool> HandUpdated = new UnityEvent<bool>();
     public UnityEvent PlayerTurnStart = new UnityEvent();
     public UnityEvent PlayerTurnEnd = new UnityEvent();
     
@@ -24,15 +26,19 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            if (!TakeCard(deck)) return;
+            if (!TakeCard(deck, true)) return;
         }
     }
 
-    public bool TakeCard(Deck deck)
+    public bool TakeCard(Deck deck, bool invokeEvent = true)
     {
         if (!deck.GetCardTop(out Card card)) return false;
         _cards.Add(card);
-        NewCard.Invoke(card);
+        if (invokeEvent)
+        {
+            NewCard.Invoke(card);
+            HandUpdated.Invoke(true);
+        }
         return true;
     }
 
@@ -49,5 +55,6 @@ public class Player : MonoBehaviour
         _resultAction.Invoke(card);
         _resultAction = null;
         PlayerTurnEnd.Invoke();
+        HandUpdated.Invoke(false);
     }
 }

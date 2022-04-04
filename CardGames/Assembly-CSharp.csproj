@@ -52,16 +52,22 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Table.cs" />
-     <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\Deck.cs" />
+     <Compile Include="Assets\Scripts\Tweens\CustomTweens.cs" />
+     <Compile Include="Assets\Scripts\BasicDeck.cs" />
+     <Compile Include="Assets\Scripts\Game.cs" />
+     <Compile Include="Assets\Scripts\Table.cs" />
      <Compile Include="Assets\Scripts\Card.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Games\BasicGame.cs" />
-     <Compile Include="Assets\Scripts\Parameters.cs" />
-     <Compile Include="Assets\Scripts\BasicDeck.cs" />
      <Compile Include="Assets\Scripts\UI\PlayerUIController.cs" />
      <Compile Include="Assets\Scripts\UI\CardUI.cs" />
+     <Compile Include="Assets\Scripts\Parameters.cs" />
+     <Compile Include="Assets\Scripts\Tweens\CardTweener.cs" />
+     <Compile Include="Assets\Scripts\Control\IControl.cs" />
+     <Compile Include="Assets\Scripts\Control\HumanControl.cs" />
+     <Compile Include="Assets\Scripts\Control\AIControl.cs" />
+     <Compile Include="Assets\Scripts\UI\ScoreUI.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -304,6 +310,9 @@
  </Reference>
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.25f1/Unity.app/Contents/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween">
+ <HintPath>/Users/nikitabaranov/Documents/UnityProjects/MyProjects/CardGames/CardGames/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>/Users/nikitabaranov/Documents/UnityProjects/MyProjects/CardGames/CardGames/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
@@ -751,6 +760,10 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{47dd4b19-8fc6-9dcf-6ae8-578516cf9d8c}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

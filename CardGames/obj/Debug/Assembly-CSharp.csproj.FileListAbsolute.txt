@@ -1,0 +1,2 @@
+/Users/nikitabaranov/Documents/UnityProjects/MyProjects/CardGames/CardGames/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache
+/Users/nikitabaranov/Documents/UnityProjects/MyProjects/CardGames/CardGames/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
